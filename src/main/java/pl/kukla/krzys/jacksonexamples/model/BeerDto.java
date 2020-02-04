@@ -22,7 +22,6 @@ import java.util.UUID;
 @Builder
 public class BeerDto {
 
-
     @Null
     private UUID id;
 
@@ -40,4 +39,5 @@ public class BeerDto {
     private OffsetDateTime createdDate;
 
     private OffsetDateTime lastUpdatedDate;
+
 }
