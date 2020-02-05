@@ -2,6 +2,7 @@ package pl.kukla.krzys.jacksonexamples.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -47,13 +48,15 @@ public class BeerDto {
     private BigDecimal price;
 
     //treat as String and specify date format
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ssZ")
+    //OffsetDateTime needs to include pattern with date and time as well like 'yyyy-MM-dd'T'HH:mm:ssZ'
     private OffsetDateTime createdDate;
 
     private OffsetDateTime lastUpdatedDate;
 
     //it uses custom LocalDateSerializer class to serialize Date
     @JsonSerialize(using = LocalDateSerializer.class)
+    @JsonDeserialize(using = LocalDateDeserializer.class)
     private LocalDate myLocalDate;
 
 }
