@@ -1,5 +1,6 @@
 package pl.kukla.krzys.jacksonexamples.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -22,6 +23,10 @@ import java.util.UUID;
 @Builder
 public class BeerDto {
 
+    // it is json property name for id is set up into 'beerId'
+    // camelCase is used by default by Jackson unless you define any special strategy in PropertyNamingStrategy
+    // but using @JsonProperty you can define name explicitly
+    @JsonProperty(value = "beerId")
     @Null
     private UUID id;
 
