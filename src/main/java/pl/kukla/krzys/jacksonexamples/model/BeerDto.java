@@ -1,5 +1,6 @@
 package pl.kukla.krzys.jacksonexamples.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -39,8 +40,12 @@ public class BeerDto {
     @Positive
     private Long upc;
 
+    //explicitly tells Json to treat 'price' as String
+    @JsonFormat(shape = JsonFormat.Shape.STRING)
     private BigDecimal price;
 
+    //treat as String and specify date format
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private OffsetDateTime createdDate;
 
     private OffsetDateTime lastUpdatedDate;
